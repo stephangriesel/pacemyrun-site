@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Results</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+	<style>
+		.result-container {
+			margin: 50px;
+			padding: 20px;
+			background-color: #ebebeb;
+			border-radius: 10px;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+			text-align: center;
+		}
+
+		.result-container p {
+			font-weight: bold;
+			margin-top: 20px;
+			margin-bottom: 10px;
+		}
+
+		.btn-container {
+			margin-top: 20px;
+			text-align: center;
+		}
+
+		.btn-container button {
+			background-color: #0072c6;
+			color: #fff;
+			border: none;
+			padding: 10px 20px;
+			border-radius: 5px;
+			margin-top: 20px;
+			cursor: pointer;
+		}
+
+		.btn-container button:hover {
+			background-color: #005bac;
+		}
+	</style>
+</head>
+<body>
+	<h1>HealthGPT Lifestyle Advice</h1>
+	<div class="result-container">
+		{% for line in generated_text.split('\n') %}
+			{% if line.startswith('-') %}
+				<ul>
+				<li>{{ line }}</li>
+			{% else %}
+				{% if line.startswith('Introduction:') %}
+					<br><h2>{{ line }}</h2>
+				{% elif line.startswith('Exercise:') %}
+					<br><h2>{{ line }}</h2>
+				{% elif line.startswith('Diet:') %}
+					<br><h2>{{ line }}</h2>
+				{% elif line.startswith('Sleep:') %}
+					<br><h2>{{ line }}</h2>
+				{% elif line.startswith('Communication:') %}
+					<br><h2>{{ line }}</h2>
+				{% elif line.startswith('Hobbies:') %}
+					<br><h2>{{ line }}</h2>
+				{% elif line.startswith('Alcohol:') %}
+					<br><h2>{{ line }}</h2>
+				{% elif line.startswith('Mental Health:') %}
+					<br><h2>{{ line }}</h2>
+				{% elif line.startswith('Conclusion:') %}
+					<br><h2>{{ line }}</h2>
+				{% else %}
+					<p>{{ line }}</p>
+				{% endif %}
+			{% endif %}
+			{% if loop.last %}
+				</ul>
+			{% endif %}
+		{% endfor %}
+		<div class="btn-container">
+			<button onclick="location.href='{{ url_for('index') }}'">Back to Questionnaire</button>
+		</div>
+	</div>
+</body>
+</html>
