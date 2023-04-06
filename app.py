@@ -8,16 +8,19 @@ app = Flask(__name__)
 
 # Set up OpenAI API credentials
 load_dotenv()
-#openai_organization = os.getenv('OPENAI_ORGANIZATION') This one is not necessary for this App
 openai_api_key = os.getenv('OPENAI_API_KEY')
 model_id = 'gpt-3.5-turbo'
 
 # Define the Flask route that displays the form
+
+
 @app.route('/')
 def index():
     return render_template('form.html')
 
 # Define the Flask route that handles the form submission
+
+
 @app.route('/submit', methods=['POST'])
 def submit_form():
     print("form submitted")
@@ -41,7 +44,6 @@ def submit_form():
     difficult = request.form.get('difficult', '')
     worthless = request.form.get('worthless', '')
     smoking = request.form.get('smoking', '')
-
 
     # Construct the mytext variable based on the form data
     mytext = f"Prepare some lifestyle advice for the prevention of cancer, for a person with the following characteristics: {patient_height}cm tall weights {weight}kg and is a {age}-year-old {gender}.  This person took the following lifestyle and medical history questionnaire and next to each question is the answer obtained. Your essay please separate it into Introduction, Exercise, Sleep, Diet, Communication, Alcohol, Hobbies, Mental Health and Conclusion sections. "
@@ -72,12 +74,12 @@ def submit_form():
     payload = {
         "model": "gpt-3.5-turbo",
         "messages": [{"role": "user", "content": mytext}],
-        "temperature" : 1.0,
-        "top_p":0.7,
-        "n" : 1,
+        "temperature": 1.0,
+        "top_p": 0.7,
+        "n": 1,
         "stream": False,
-        "presence_penalty":0,
-        "frequency_penalty":0,
+        "presence_penalty": 0,
+        "frequency_penalty": 0,
     }
     headers = {
         "Content-Type": "application/json",
@@ -85,18 +87,20 @@ def submit_form():
     }
     response = requests.post(URL, headers=headers, json=payload, stream=False)
     print("responseeeee", response)
-    
+
     # Process the API response and return the result
     if response.ok:
         response_data = response.json()
         print("response_dataaaaaa", response_data)
-        generated_text = response_data["choices"][0]["message"]["content"].strip()
-        print("generated_textttt",generated_text)
-        
+        generated_text = response_data["choices"][0]["message"]["content"].strip(
+        )
+        print("generated_textttt", generated_text)
+
         # Render the result template
         return render_template('results.html', generated_text=generated_text)
     else:
         return "Error calling OpenAI API"
 
+
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5080, debug=True)
