@@ -1,10 +1,11 @@
-from flask import Flask, render_template, request
+# app1_blueprint.py
+from flask import Blueprint, render_template, request
 import requests
 import openai
 from dotenv import load_dotenv
 import os
 
-app = Flask(__name__)
+app1 = Blueprint('app1', __name__)
 
 # Set up OpenAI API credentials
 load_dotenv()
@@ -14,14 +15,14 @@ model_id = 'gpt-3.5-turbo'
 # Define the Flask route that displays the form
 
 
-@app.route('/')
+@app1.route('/')
 def index():
     return render_template('form.html')
 
 # Define the Flask route that handles the form submission
 
 
-@app.route('/submit', methods=['POST'])
+@app1.route('/submit', methods=['POST'])
 def submit_form():
     print("form submitted")
     # Get the form data from the request
@@ -103,4 +104,4 @@ def submit_form():
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5080, debug=True)
+    app1.run(host='0.0.0.0', port=5080, debug=True)

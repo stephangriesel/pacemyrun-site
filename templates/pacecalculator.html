@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pace Calculator</title>
+</head>
+<body>
+    <h1>Pace Calculator</h1>
+    <form action="/app2/calculate" method="post">
+        <label for="distance">Distance (in km):</label><br>
+        <input type="number" id="distance" name="distance" min="1" required><br>
+        <label for="time">Time (in minutes):</label><br>
+        <input type="number" id="time" name="time" min="1" required><br>
+        <input type="submit" value="Calculate">
+    </form>
+</body>
+</html>
