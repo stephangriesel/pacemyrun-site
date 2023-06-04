@@ -11,6 +11,7 @@ app1 = Blueprint('app1', __name__)
 load_dotenv()
 openai_api_key = os.getenv('OPENAI_API_KEY')
 model_id = 'gpt-3.5-turbo'
+print(" * Your API key is working:",openai_api_key)
 
 # Define the Flask route that displays the form
 
