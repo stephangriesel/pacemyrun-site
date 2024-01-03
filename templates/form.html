@@ -5,7 +5,7 @@
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>HealthGPT Lifestyle Questionnaire</h1>
+    <h1>Running Questionnaire</h1>
     <form action="/app1/submit" method="POST" onsubmit="showLoadingSpinner()">
         <label for="height">Height (in cm):</label>
         <input type="number" id="height" name="height" required><br>
@@ -41,6 +41,12 @@
         <label><input type="radio" name="fruits_veggies" value="3 portions" required>3 portions</label><br>
         <label><input type="radio" name="fruits_veggies" value="4 portions" required>4 portions</label><br>
         <label><input type="radio" name="fruits_veggies" value="5 or more portions required">5 or more portions</label><br>
+
+        <p>Have you been diagnosed with...</p>
+        <label><input type="radio" name="diagnosed" value="Heart Disease">Heart Disease</label><br>
+        <label><input type="radio" name="diagnosed" value="High Blood Pressure" required>High Blood Pressure</label><br>
+        <label><input type="radio" name="diagnosed" value="Stroke or Transient Ischemic Attach" required>Stroke or Transient Ischemic Attach</label><br>
+        <label><input type="radio" name="diagnosed" value="Depression" required>Depression</label><br>
 
         <p>In a week, how many portions of legumes do you eat?</p>
         <label><input type="radio" name="legumes" value="less than 1 portion per week">Less than 1 portion per week</label><br>

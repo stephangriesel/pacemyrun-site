@@ -34,6 +34,7 @@ def submit_form():
     walk = request.form.get('walk', '')
     exercise = request.form.get('exercise', '')
     fruits_veggies = request.form.get('fruits_veggies', '')
+    diagnosed = request.form.get('diagnosed', '')
     legumes = request.form.get('legumes', '')
     sleep = request.form.get('sleep', '')
     sleep_reason = request.form.getlist('sleep_reason[]')
@@ -48,10 +49,11 @@ def submit_form():
     smoking = request.form.get('smoking', '')
 
     # Construct the mytext variable based on the form data
-    mytext = f"Prepare some lifestyle advice for the prevention of cancer, for a person with the following characteristics: {patient_height}cm tall weights {weight}kg and is a {age}-year-old {gender}.  This person took the following lifestyle and medical history questionnaire and next to each question is the answer obtained. Your essay please separate it into Introduction, Exercise, Sleep, Diet, Communication, Alcohol, Hobbies, Mental Health and Conclusion sections. "
+    mytext = f"Prepare some lifestyle advice for the prevention of cancer, for a person with the following characteristics: {patient_height}cm tall weights {weight}kg and is a {age}-year-old {gender}.  This person took the following lifestyle and medical history questionnaire and next to each question is the answer obtained. Your essay please separate it into Introduction, Exercise, Sleep, Diet, Health Risks, Communication, Alcohol, Hobbies, Mental Health and Conclusion sections. "
     mytext += f"\nPhysical Activity:\nHow much do you walk everyday? {walk}."
     mytext += f"\nIn a week how many times you exercise more than 30 minutes? {exercise}."
     mytext += f"\nDiet:\nEveryday how many portions of fruits and vegetables do you eat? {fruits_veggies}."
+    mytext += f"\nHealth Risks:\nI have been diagnosed with {diagnosed}."
     mytext += f"\nIn a week, how many portions of legumes do you eat? {legumes}."
     mytext += f"\nSleep:\nIn the past months, how would you qualify your own sleep? {sleep}."
     if sleep_reason:
