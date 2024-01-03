@@ -1,6 +1,6 @@
-# HealthGPT
+# Pace My Run
 
-Uses ChatGPT API to get customised health advise based on a health questionnaire.
+Toolbox for runners. More information soon.
 
 # Steps to Run
 
