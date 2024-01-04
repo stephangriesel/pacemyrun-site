@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>HealthGPT</title>
+    <title>PaceMyRun 🏃🏻</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
@@ -35,40 +35,21 @@
         <label><input type="radio" name="exercise" value="3 days" required>3 days</label><br>
         <label><input type="radio" name="exercise" value="4 days or more" required>4 days or more</label><br>
 
-        <p>Everyday how many portions of fruits and vegetables do you eat?</p>
-        <label><input type="radio" name="fruits_veggies" value="less than 1" required>Less than 1</label><br>
-        <label><input type="radio" name="fruits_veggies" value="2 portions" required>2 portions</label><br>
-        <label><input type="radio" name="fruits_veggies" value="3 portions" required>3 portions</label><br>
-        <label><input type="radio" name="fruits_veggies" value="4 portions" required>4 portions</label><br>
-        <label><input type="radio" name="fruits_veggies" value="5 or more portions required">5 or more portions</label><br>
-
-        <p>Have you been diagnosed with...</p>
-        <label><input type="radio" name="diagnosed" value="Heart Disease">Heart Disease</label><br>
-        <label><input type="radio" name="diagnosed" value="High Blood Pressure" required>High Blood Pressure</label><br>
-        <label><input type="radio" name="diagnosed" value="Stroke or Transient Ischemic Attach" required>Stroke or Transient Ischemic Attach</label><br>
-        <label><input type="radio" name="diagnosed" value="Depression" required>Depression</label><br>
-
-        <p>In a week, how many portions of legumes do you eat?</p>
-        <label><input type="radio" name="legumes" value="less than 1 portion per week">Less than 1 portion per week</label><br>
-        <label><input type="radio" name="legumes" value="1 portion" required>1 portion</label><br>
-        <label><input type="radio" name="legumes" value="2 portions" required>2 portions</label><br>
-        <label><input type="radio" name="legumes" value="3 portions" required>3 portions</label><br>
-        <label><input type="radio" name="legumes" value="4 portions" required>4 portions</label><br>
-
-        <p>In the past month, how would you qualify your own sleep?</p>
-        <label><input type="radio" name="sleep" value="extremely good" required>Extremely good</label><br>
-        <label><input type="radio" name="sleep" value="normal" required>Normal</label><br>
-        <label><input type="radio" name="sleep" value="bad" required>Bad</label><br>
-        <label><input type="radio" name="sleep" value="very bad" required>Very bad</label><br>
+        <p>In the past month, how would you rate your own sleep?</p>
+        <label><input type="radio" name="sleep" value="extremely good" required>7 - 8 hours</label><br>
+        <label><input type="radio" name="sleep" value="normal" required>6 - 8 hours</label><br>
+        <label><input type="radio" name="sleep" value="bad" required>3 - 5 hours</label><br>
+        <label><input type="radio" name="sleep" value="very bad" required>1 - 3 hours</label><br>
         
-        <p>Which of the following reasons apply to your sleep? Select all that apply. </p>
-        <label><input type="checkbox" name="sleep_reason[]" value="I snore louder than my speaking voice" >I snore louder than my speaking voice</label><br>
-        <label><input type="checkbox" name="sleep_reason[]" value="fatigue and daytime sleepiness" >Fatigue and daytime sleepiness</label><br>
-        <label><input type="checkbox" name="sleep_reason[]" value="Shortness of breath during sleep" >Shortness of breath during sleep</label><br>
-        <label><input type="checkbox" name="sleep_reason[]" id="none-checkbox" value="none of the above" >None of the above</label><br>
+        <p>Have you been diagnosed with any of the following? Select all that applies </p>
+        <label><input type="checkbox" name="diagnosed[]" value="Heart Disease" >Heart Disease</label><br>
+        <label><input type="checkbox" name="diagnosed[]" value="High Blood Pressure" >High Blood Pressure</label><br>
+        <label><input type="checkbox" name="diagnosed[]" value="Stroke or Transient Ischemic Attach" >Stroke or Transient Ischemic Attach</label><br>
+        <label><input type="checkbox" name="diagnosed[]" value="Depression" >Depression</label><br>
+        <label><input type="checkbox" name="diagnosed[]" id="none-checkbox" value="none of the above" >None of the above</label><br>
         <script>
         const noneCheckbox = document.getElementById("none-checkbox");
-        const otherCheckboxes = document.querySelectorAll('input[name="sleep_reason[]"]:not(#none-checkbox)');
+        const otherCheckboxes = document.querySelectorAll('input[name="diagnosed[]"]:not(#none-checkbox)');
         
         noneCheckbox.addEventListener("change", function() {
             if (this.checked) {
@@ -99,7 +80,7 @@
         });
         </script>
         
-        <p>Have you ever been told you have hypertension? Or are you on treatment for hypertension?</p>
+        <!-- <p>Have you ever been told you have hypertension? Or are you on treatment for hypertension?</p>
         <label><input type="radio" name="hypertension" value="yes" required>Yes</label><br>
         <label><input type="radio" name="hypertension" value="no" required>No</label><br>
 
@@ -144,7 +125,7 @@
         <label><input type="radio" name="worthless" value="Just a little" required>Just a little</label><br>
         <label><input type="radio" name="worthless" value="Sometimes" required>Sometimes</label><br>
         <label><input type="radio" name="worthless" value="Generally" required>Generally</label><br>
-        <label><input type="radio" name="worthless" value="Everytime" required>Everytime</label><br>
+        <label><input type="radio" name="worthless" value="Everytime" required>Everytime</label><br> -->
 
         <!-- Add a div with a unique ID to show the loading spinner -->
         <div id="loading-spinner" class="hidden">

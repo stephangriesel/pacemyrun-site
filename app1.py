@@ -35,9 +35,8 @@ def submit_form():
     exercise = request.form.get('exercise', '')
     fruits_veggies = request.form.get('fruits_veggies', '')
     diagnosed = request.form.get('diagnosed', '')
-    legumes = request.form.get('legumes', '')
     sleep = request.form.get('sleep', '')
-    sleep_reason = request.form.getlist('sleep_reason[]')
+    diagnosed = request.form.getlist('diagnosed[]')
     hypertension = request.form.get('hypertension', '')
     diabetes = request.form.get('diabetes', '')
     smoking = request.form.get('smoking', '')
@@ -49,16 +48,13 @@ def submit_form():
     smoking = request.form.get('smoking', '')
 
     # Construct the mytext variable based on the form data
-    mytext = f"Prepare some lifestyle advice for the prevention of cancer, for a person with the following characteristics: {patient_height}cm tall weights {weight}kg and is a {age}-year-old {gender}.  This person took the following lifestyle and medical history questionnaire and next to each question is the answer obtained. Your essay please separate it into Introduction, Exercise, Sleep, Diet, Health Risks, Communication, Alcohol, Hobbies, Mental Health and Conclusion sections. "
+    mytext = f"Prepare some lifestyle and training advice for a person that is using running as main form of exercise, this person has the following characteristics: {patient_height}cm tall weights {weight}kg and is a {age}-year-old {gender}.  This person took the following lifestyle and medical history questionnaire and next to each question is the answer obtained. Your essay please separate it into Introduction, Exercise, Sleep, Health Risks, Communication, Alcohol, Hobbies, Mental Health and Conclusion sections. "
     mytext += f"\nPhysical Activity:\nHow much do you walk everyday? {walk}."
     mytext += f"\nIn a week how many times you exercise more than 30 minutes? {exercise}."
-    mytext += f"\nDiet:\nEveryday how many portions of fruits and vegetables do you eat? {fruits_veggies}."
-    mytext += f"\nHealth Risks:\nI have been diagnosed with {diagnosed}."
-    mytext += f"\nIn a week, how many portions of legumes do you eat? {legumes}."
-    mytext += f"\nSleep:\nIn the past months, how would you qualify your own sleep? {sleep}."
-    if sleep_reason:
-        mytext += "\nWhich of the following reasons apply to your sleep? Select all that apply."
-        for reason in sleep_reason:
+    mytext += f"\Sleep:\nIn the past months, how would you qualify your own sleep? {sleep}."
+    if diagnosed:
+        mytext += "\nHealth Risks: Have you been diagnosed with any of the following? Select all that apply."
+        for reason in diagnosed:
             mytext += f"\n- {reason}"
     mytext += f"\nMedical History:\nHave you ever been told you have hypertension? Or are you on treatment for hypertension? {hypertension}."
     mytext += f"\nHave you ever been told you have diabetes? Or are you on treatment for diabetes? {diabetes}."
@@ -95,15 +91,15 @@ def submit_form():
     # Process the API response and return the result
     if response.ok:
         response_data = response.json()
-        print("response_dataaaaaa", response_data)
+        print("🏁 Response Data: ", response_data)
         generated_text = response_data["choices"][0]["message"]["content"].strip(
         )
-        print("generated_textttt", generated_text)
+        print("⭐ Generated Text: ", generated_text)
 
         # Render the result template
         return render_template('results.html', generated_text=generated_text)
     else:
-        return "Error calling OpenAI API"
+        return "❌ Error calling OpenAI API"
 
 
 if __name__ == '__main__':
