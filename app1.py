@@ -32,38 +32,23 @@ def submit_form():
     age = request.form.get('age', '')
     gender = request.form.get('gender', '')
     walk = request.form.get('walk', '')
+    experience = request.form.get('experience', '')
     exercise = request.form.get('exercise', '')
     fruits_veggies = request.form.get('fruits_veggies', '')
     diagnosed = request.form.get('diagnosed', '')
     sleep = request.form.get('sleep', '')
     diagnosed = request.form.getlist('diagnosed[]')
-    hypertension = request.form.get('hypertension', '')
-    diabetes = request.form.get('diabetes', '')
-    smoking = request.form.get('smoking', '')
-    alcohol = request.form.get('alcohol', '')
-    nervous = request.form.get('nervous', '')
-    depressed = request.form.get('depressed', '')
-    difficult = request.form.get('difficult', '')
-    worthless = request.form.get('worthless', '')
-    smoking = request.form.get('smoking', '')
 
     # Construct the mytext variable based on the form data
-    mytext = f"Prepare some lifestyle and training advice for a person that is using running as main form of exercise, this person has the following characteristics: {patient_height}cm tall weights {weight}kg and is a {age}-year-old {gender}.  This person took the following lifestyle and medical history questionnaire and next to each question is the answer obtained. Your essay please separate it into Introduction, Exercise, Sleep, Health Risks, Communication, Alcohol, Hobbies, Mental Health and Conclusion sections. "
+    mytext = f"Prepare some lifestyle and training advice for a person that is using running as main form of exercise, this person has the following characteristics: {patient_height}cm tall weights {weight}kg and is a {age}-year-old {gender}.  This person took the following lifestyle and medical history questionnaire and next to each question is the answer obtained. Your essay please separate it into Introduction, Exercise, Experience, Sleep, Health Risks and Conclusion sections. "
     mytext += f"\nPhysical Activity:\nHow much do you walk everyday? {walk}."
+    mytext += f"\nExperience: In level of running experience I see myself as {experience}."
     mytext += f"\nIn a week how many times you exercise more than 30 minutes? {exercise}."
-    mytext += f"\Sleep:\nIn the past months, how would you qualify your own sleep? {sleep}."
+    mytext += f"\nSleep: In the past months, how would you qualify your own sleep? {sleep}."
     if diagnosed:
         mytext += "\nHealth Risks: Have you been diagnosed with any of the following? Select all that apply."
         for reason in diagnosed:
             mytext += f"\n- {reason}"
-    mytext += f"\nMedical History:\nHave you ever been told you have hypertension? Or are you on treatment for hypertension? {hypertension}."
-    mytext += f"\nHave you ever been told you have diabetes? Or are you on treatment for diabetes? {diabetes}."
-    mytext += f"\nDo you smoke? {smoking}."
-    mytext += f"\nHow much alcohol do you drink per day? {alcohol}."
-    mytext += f"\nMental Health:\nIn the past month, did you feel nervous?{nervous}."
-    mytext += f"\nIn the past month, did you feel depressed and like nothing could make you feel better? {depressed}."
-    mytext += f"\nIn the past month, did you feel that anything you did was foolish?{difficult}."
-    mytext += f"\nIn the past month, did you feel worthless? {worthless}."
 
     print("mytext", mytext)
 
