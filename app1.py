@@ -33,6 +33,7 @@ def submit_form():
     gender = request.form.get('gender', '')
     walk = request.form.get('walk', '')
     experience = request.form.get('experience', '')
+    goal = request.form.get('goal', '')
     exercise = request.form.get('exercise', '')
     fruits_veggies = request.form.get('fruits_veggies', '')
     diagnosed = request.form.get('diagnosed', '')
@@ -40,9 +41,10 @@ def submit_form():
     diagnosed = request.form.getlist('diagnosed[]')
 
     # Construct the mytext variable based on the form data
-    mytext = f"Prepare some lifestyle and training advice for a person that is using running as main form of exercise, this person has the following characteristics: {patient_height}cm tall weights {weight}kg and is a {age}-year-old {gender}.  This person took the following lifestyle and medical history questionnaire and next to each question is the answer obtained. Your essay please separate it into Introduction, Exercise, Experience, Sleep, Health Risks and Conclusion sections. "
+    mytext = f"Prepare some lifestyle and training advice for a person that is using running as main form of exercise, this person has the following characteristics: {patient_height}cm tall weights {weight}kg and is a {age}-year-old {gender}.  This person took the following lifestyle and medical history questionnaire and next to each question is the answer obtained. Your essay please separate it into Introduction, Exercise, Experience, Goal, Sleep, Health Risks and Conclusion sections. "
     mytext += f"\nPhysical Activity:\nHow much do you walk everyday? {walk}."
     mytext += f"\nExperience: In level of running experience I see myself as {experience}."
+    mytext += f"\nGoal: My goal is to run {goal}."
     mytext += f"\nIn a week how many times you exercise more than 30 minutes? {exercise}."
     mytext += f"\nSleep: In the past months, how would you qualify your own sleep? {sleep}."
     if diagnosed:
