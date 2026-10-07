@@ -2,6 +2,8 @@
 import '../styles/global.css';
 interface Props { title: string; description?: string }
 const { title, description = 'A toolbox for runners: pace planning and personalised training advice.' } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const fullTitle = `${title} · PaceMyRun 🏃🏻`;
 ---
 <!doctype html>
 <html lang="en">
@@ -9,7 +11,15 @@ const { title, description = 'A toolbox for runners: pace planning and personali
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
-    <title>{title} · PaceMyRun 🏃🏻</title>
+    <title>{fullTitle}</title>
+    <link rel="canonical" href={canonical} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="PaceMyRun" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary" />
   </head>
   <body>
     <header>
