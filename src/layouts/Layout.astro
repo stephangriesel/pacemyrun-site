@@ -1,0 +1,24 @@
+---
+import '../styles/global.css';
+interface Props { title: string; description?: string }
+const { title, description = 'A toolbox for runners: pace planning and personalised training advice.' } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{title} · PaceMyRun 🏃🏻</title>
+  </head>
+  <body>
+    <header>
+      <a href="/" class="brand">PaceMyRun 🏃🏻</a>
+      <nav>
+        <a href="/pace-calculator">Pace calculator</a>
+        <a href="/questionnaire">Training advice</a>
+      </nav>
+    </header>
+    <main><slot /></main>
+  </body>
+</html>

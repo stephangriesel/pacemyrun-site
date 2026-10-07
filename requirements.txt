@@ -1,4 +1,0 @@
-Flask==2.2.5
-requests==2.32.0
-openai==0.10.2
-python-dotenv==0.19.1

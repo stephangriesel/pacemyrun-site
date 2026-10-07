@@ -1,0 +1,52 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+<Layout title="Pace calculator">
+  <h1>Pace calculator</h1>
+  <p>Enter your target distance and time. You get a negative-split plan: start 5% slower than average and finish 5% faster, landing exactly on your target time. The 5% spread is a simple default chosen for this tool, not a published standard; real races also depend on terrain and conditions.</p>
+  <form id="pace-form">
+    <div class="field">
+      <label for="distance">Distance (km)</label>
+      <input type="number" id="distance" name="distance" min="0.1" step="any" required />
+    </div>
+    <div class="field">
+      <label for="time">Target time (minutes)</label>
+      <input type="number" id="time" name="time" min="1" step="any" required />
+    </div>
+    <button type="submit">Calculate</button>
+  </form>
+  <section id="result" aria-live="polite" hidden>
+    <p>Average pace: <strong id="avg"></strong> /km</p>
+    <table>
+      <thead><tr><th>Section ends at</th><th>Pace (/km)</th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </section>
+</Layout>
+
+<script>
+  import { negativeSplits, formatPace } from '../lib/pace';
+
+  const form = document.querySelector<HTMLFormElement>('#pace-form')!;
+  const result = document.querySelector<HTMLElement>('#result')!;
+  const rows = document.querySelector<HTMLElement>('#rows')!;
+  const avg = document.querySelector<HTMLElement>('#avg')!;
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    const { averageSecPerKm, splits } = negativeSplits(Number(data.get('distance')), Number(data.get('time')));
+    avg.textContent = formatPace(averageSecPerKm);
+    rows.replaceChildren(
+      ...splits.map((s) => {
+        const tr = document.createElement('tr');
+        tr.append(
+          Object.assign(document.createElement('td'), { textContent: `${+s.km.toFixed(2)} km` }),
+          Object.assign(document.createElement('td'), { textContent: formatPace(s.paceSecPerKm) }),
+        );
+        return tr;
+      }),
+    );
+    result.hidden = false;
+  });
+</script>

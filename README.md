@@ -1,13 +1,15 @@
 # Pace My Run
 
-Toolbox for runners. More information soon.
+Toolbox for runners, built with [Astro](https://astro.build). Fully static: no server, API keys or database.
 
-# Steps to Run
+- `/pace-calculator`: negative-split planner
+- `/questionnaire`: rule-based training report (logic in `src/lib/advice.ts`)
 
-1. Create a Virtual Environment in python with virtualenv `python3 -m venv venv`
-2. Activate venv with `. venv/bin/activate`
-3. Install requirements with `pip install -r requirements.txt`
-4. Run the app with `python main.py`
+## Run
 
-Remember ChatGPT API is a paid service. If you get rate limiting errors it could be that your API key is not linked to a paid subscription.
-You can create a subscription at: https://platform.openai.com/account/billing/overview
+```sh
+npm install
+npm run dev      # http://localhost:4321
+npm run build    # static site in dist/, deploy anywhere
+npm test
+```

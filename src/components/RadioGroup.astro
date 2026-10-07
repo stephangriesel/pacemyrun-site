@@ -1,0 +1,14 @@
+---
+interface Option { label: string; value: string }
+interface Props { name: string; legend: string; options: readonly (string | Option)[]; selected?: string }
+const { name, legend, options, selected } = Astro.props;
+const opts = options.map((o) => (typeof o === 'string' ? { label: o, value: o } : o));
+---
+<fieldset>
+  <legend>{legend}</legend>
+  {opts.map((o, i) => (
+    <label class="opt">
+      <input type="radio" name={name} value={o.value} required={i === 0} checked={o.value === selected} /> {o.label}
+    </label>
+  ))}
+</fieldset>

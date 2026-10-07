@@ -1,0 +1,35 @@
+:root {
+  --accent: #0a6fd6;
+  --bg: #fff;
+  --fg: #1b1f24;
+  --muted: #5b6573;
+  --line: #d8dee6;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #14181d; --fg: #e8ecf1; --muted: #9aa5b3; --line: #2b323b; --accent: #5aa9ff; }
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.6 system-ui, sans-serif; }
+header { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; padding: 1rem 1.25rem; border-bottom: 1px solid var(--line); }
+header nav { display: flex; gap: 1.25rem; }
+a { color: var(--accent); }
+.brand { font-weight: 700; text-decoration: none; color: var(--fg); }
+main { max-width: 42rem; margin: 0 auto; padding: 1.5rem 1.25rem 4rem; }
+fieldset { border: 0; padding: 0; margin: 0 0 1.5rem; }
+legend { font-weight: 600; margin-bottom: .4rem; }
+label.opt { display: block; padding: .15rem 0; }
+.field { display: grid; gap: .25rem; margin-bottom: 1rem; }
+input[type=number] { font: inherit; padding: .5rem; border: 1px solid var(--line); border-radius: 6px; background: var(--bg); color: var(--fg); max-width: 12rem; }
+button, .button { font: inherit; padding: .6rem 1.2rem; border: 0; border-radius: 6px; background: var(--accent); color: #fff; cursor: pointer; text-decoration: none; display: inline-block; }
+button:disabled { opacity: .6; cursor: wait; }
+.errors { border: 1px solid #c0392b; border-radius: 6px; padding: .75rem 1rem; margin-bottom: 1.5rem; }
+.cards { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
+.card { border: 1px solid var(--line); border-radius: 10px; padding: 1rem 1.25rem; text-decoration: none; color: inherit; }
+.card:hover { border-color: var(--accent); }
+.card h2 { margin: 0 0 .25rem; font-size: 1.1rem; }
+.card p { margin: 0; color: var(--muted); }
+table { border-collapse: collapse; width: 100%; margin: 1rem 0; }
+th, td { text-align: left; padding: .5rem .75rem; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums; }
+.advice h2 { margin-top: 2rem; }
+.notice { color: var(--muted); font-size: .9rem; }
